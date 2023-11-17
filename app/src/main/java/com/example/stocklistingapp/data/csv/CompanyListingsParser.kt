@@ -17,9 +17,9 @@ class CompanyListingsParser @Inject constructor() : CSVParser<CompanyListing> {
         return withContext(Dispatchers.IO) {
             csvReader.readAll().drop(1)
                 .mapNotNull { line ->
-                    var symbol = line.getOrNull(0)
-                    var name = line.getOrNull(1)
-                    var exchange = line.getOrNull(2)
+                    val symbol = line.getOrNull(0)
+                    val name = line.getOrNull(1)
+                    val exchange = line.getOrNull(2)
                     CompanyListing(
                         name = name ?: return@mapNotNull null,
                         symbol = symbol ?: return@mapNotNull null,
