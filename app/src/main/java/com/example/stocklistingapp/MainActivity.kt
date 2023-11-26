@@ -8,7 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraph
-import com.example.stocklistingapp.presentation.company_listings.NavGraphs
+import com.example.stocklistingapp.presentation.NavGraphs
 import com.example.stocklistingapp.ui.theme.MyApplicationTheme
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.spec.NavGraphSpec
