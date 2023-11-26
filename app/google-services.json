@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1006456136136",
+    "project_id": "stocklistingapp",
+    "storage_bucket": "stocklistingapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006456136136:android:046aaf189de7018d3ba0fd",
+        "android_client_info": {
+          "package_name": "com.example.stocklistingapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAbsw7FUvpNgMmIk05bcGT4pwxS0ivQQA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
