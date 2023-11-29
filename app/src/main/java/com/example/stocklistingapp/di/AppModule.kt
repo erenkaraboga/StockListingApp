@@ -6,6 +6,10 @@ import com.example.stocklistingapp.data.local.StockDatabase
 import com.example.stocklistingapp.data.remote.StockApi
 import com.example.stocklistingapp.util.firebase_analytics.AnalyticsHelper
 import com.example.stocklistingapp.util.firebase_analytics.AnalyticsLogger
+import com.example.stocklistingapp.util.firebase_analytics.FirebaseAnalyticsHelper
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -38,12 +42,20 @@ object AppModule {
             ,"stockdb.db")
             .build()
     }
-    @InstallIn(SingletonComponent::class)
     @Module
+    @InstallIn(SingletonComponent::class)
     abstract class AnalyticsModule {
         @Binds
         abstract fun bindsAnalyticsHelper(
-            analyticsHelperImpl: AnalyticsLogger
+            analyticsHelperImpl: FirebaseAnalyticsHelper
         ): AnalyticsHelper
+
+        companion object {
+            @Provides
+            @Singleton
+            fun provideFirebaseAnalytics(): FirebaseAnalytics {
+                return Firebase.analytics
+            }
+        }
     }
 }

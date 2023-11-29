@@ -1,5 +1,6 @@
 package com.example.stocklistingapp.util.firebase_analytics
 
+import android.util.Log
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.logEvent
 import javax.inject.Inject
@@ -17,5 +18,6 @@ class FirebaseAnalyticsHelper @Inject constructor(
                 )
             }
         }
+        Log.d("STOCK_LISTING_APP", "Received analytics event: $event")
     }
 }
