@@ -1,10 +1,12 @@
 package com.example.stocklistingapp.di
 
 import android.app.Application
-import android.content.Context
 import androidx.room.Room
 import com.example.stocklistingapp.data.local.StockDatabase
 import com.example.stocklistingapp.data.remote.StockApi
+import com.example.stocklistingapp.util.firebase_analytics.AnalyticsHelper
+import com.example.stocklistingapp.util.firebase_analytics.AnalyticsLogger
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,5 +37,13 @@ object AppModule {
             ,StockDatabase::class.java
             ,"stockdb.db")
             .build()
+    }
+    @InstallIn(SingletonComponent::class)
+    @Module
+    abstract class AnalyticsModule {
+        @Binds
+        abstract fun bindsAnalyticsHelper(
+            analyticsHelperImpl: AnalyticsLogger
+        ): AnalyticsHelper
     }
 }

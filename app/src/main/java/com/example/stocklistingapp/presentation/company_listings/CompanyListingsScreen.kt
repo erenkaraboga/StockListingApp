@@ -14,10 +14,16 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.stocklistingapp.presentation.destinations.CompanyInfoScreenDestination
 import com.example.stocklistingapp.ui.theme.TextBlue
+import com.example.stocklistingapp.util.LocalAnalyticsHelper
+import com.example.stocklistingapp.util.buttonClick
+import com.example.stocklistingapp.util.firebase_analytics.AnalyticsEvent
+import com.example.stocklistingapp.util.firebase_analytics.AnalyticsHelper
+import com.example.stocklistingapp.util.selectCompany
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import javax.inject.Inject
 
 @Composable
 @Destination(start = true)
@@ -25,6 +31,7 @@ fun CompanyListingsScreen(
     navigator: DestinationsNavigator,
     viewModel: CompanyListingsViewModel = hiltViewModel(),
 ) {
+    val analyticsHelper = LocalAnalyticsHelper.current
     val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = viewModel.state.isRefreshing)
     val state = viewModel.state
     Column(modifier = Modifier.fillMaxSize()) {
@@ -50,6 +57,8 @@ fun CompanyListingsScreen(
                     CompanyItem(company = company, modifier = Modifier
                         .fillMaxWidth()
                         .clickable {
+                            analyticsHelper.buttonClick("CompanyListingsScreen")
+                             analyticsHelper.selectCompany(company.name)
                              navigator.navigate(CompanyInfoScreenDestination(company.symbol))
                         }
                         .padding(16.dp))
