@@ -1,8 +1,6 @@
 package com.example.stocklistingapp.data.repository
 
 import com.example.stocklistingapp.data.csv.CSVParser
-import com.example.stocklistingapp.data.csv.CompanyListingsParser
-import com.example.stocklistingapp.data.csv.IntradayInfoParser
 import com.example.stocklistingapp.data.local.StockDatabase
 import com.example.stocklistingapp.data.mapper.toCompanyInfo
 import com.example.stocklistingapp.data.mapper.toCompanyListing
@@ -12,14 +10,11 @@ import com.example.stocklistingapp.domain.model.CompanyInfo
 import com.example.stocklistingapp.domain.model.CompanyListing
 import com.example.stocklistingapp.domain.model.IntradayInfo
 import com.example.stocklistingapp.domain.repository.StockRepository
-import com.example.stocklistingapp.util.Resource
-import com.opencsv.CSVReader
+import com.example.stocklistingapp.common.resources.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
-import java.io.InputStreamReader
-import java.lang.reflect.Constructor
 import javax.inject.Inject
 import javax.inject.Singleton
 

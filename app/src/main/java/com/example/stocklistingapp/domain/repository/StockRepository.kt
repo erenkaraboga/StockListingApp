@@ -1,10 +1,9 @@
 package com.example.stocklistingapp.domain.repository
 
-import android.app.DownloadManager.Query
 import com.example.stocklistingapp.domain.model.CompanyInfo
 import com.example.stocklistingapp.domain.model.CompanyListing
 import com.example.stocklistingapp.domain.model.IntradayInfo
-import com.example.stocklistingapp.util.Resource
+import com.example.stocklistingapp.common.resources.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface StockRepository {

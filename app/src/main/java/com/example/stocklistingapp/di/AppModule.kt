@@ -1,12 +1,15 @@
 package com.example.stocklistingapp.di
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
+import com.example.stocklistingapp.common.extensions.Preferences
 import com.example.stocklistingapp.data.local.StockDatabase
 import com.example.stocklistingapp.data.remote.StockApi
-import com.example.stocklistingapp.util.firebase_analytics.AnalyticsHelper
-import com.example.stocklistingapp.util.firebase_analytics.AnalyticsLogger
-import com.example.stocklistingapp.util.firebase_analytics.FirebaseAnalyticsHelper
+import com.example.stocklistingapp.domain.model.AnalyticsHelper
+import com.example.stocklistingapp.common.firebase_analytics.FirebaseAnalyticsService
+import com.example.stocklistingapp.data.remote.NotificationApi
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
@@ -36,6 +39,16 @@ object AppModule {
     }
     @Provides
     @Singleton
+    fun provideNotificationApi():NotificationApi{
+        return Retrofit.Builder()
+            .baseUrl(NotificationApi.BASE_URL)
+            .addConverterFactory(MoshiConverterFactory.create())
+            .build()
+            .create()
+
+    }
+    @Provides
+    @Singleton
     fun provideStockDatabase(app: Application) : StockDatabase{
         return Room.databaseBuilder(app
             ,StockDatabase::class.java
@@ -47,7 +60,7 @@ object AppModule {
     abstract class AnalyticsModule {
         @Binds
         abstract fun bindsAnalyticsHelper(
-            analyticsHelperImpl: FirebaseAnalyticsHelper
+            analyticsHelperImpl: FirebaseAnalyticsService
         ): AnalyticsHelper
 
         companion object {
@@ -58,4 +71,9 @@ object AppModule {
             }
         }
     }
+
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(app: Application): SharedPreferences = app.getSharedPreferences(
+        Preferences.PREFS, Context.MODE_PRIVATE)
 }

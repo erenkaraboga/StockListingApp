@@ -14,16 +14,12 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.stocklistingapp.presentation.destinations.CompanyInfoScreenDestination
 import com.example.stocklistingapp.ui.theme.TextBlue
-import com.example.stocklistingapp.util.LocalAnalyticsHelper
-import com.example.stocklistingapp.util.buttonClick
-import com.example.stocklistingapp.util.firebase_analytics.AnalyticsEvent
-import com.example.stocklistingapp.util.firebase_analytics.AnalyticsHelper
-import com.example.stocklistingapp.util.selectCompany
+import com.example.stocklistingapp.common.extensions.LocalAnalyticsHelper
+import com.example.stocklistingapp.common.extensions.buttonClick
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import javax.inject.Inject
 
 @Composable
 @Destination(start = true)

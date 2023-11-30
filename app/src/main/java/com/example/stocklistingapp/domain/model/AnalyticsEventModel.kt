@@ -1,6 +1,6 @@
-package com.example.stocklistingapp.util.firebase_analytics
+package com.example.stocklistingapp.domain.model
 
-data class AnalyticsEvent(
+data class AnalyticsEventModel(
     val type: String,
     val extras: List<Param> = emptyList(),
 ) {
@@ -22,5 +22,5 @@ data class AnalyticsEvent(
     }
 }
 interface AnalyticsHelper {
-    fun logEvent(event: AnalyticsEvent)
+    fun logEvent(event: AnalyticsEventModel)
 }

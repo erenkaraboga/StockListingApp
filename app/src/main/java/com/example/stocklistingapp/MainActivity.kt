@@ -9,19 +9,13 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavGraph
 import com.example.stocklistingapp.presentation.NavGraphs
 import com.example.stocklistingapp.ui.theme.MyApplicationTheme
-import com.example.stocklistingapp.util.LocalAnalyticsHelper
-import com.example.stocklistingapp.util.firebase_analytics.AnalyticsEvent
-import com.example.stocklistingapp.util.firebase_analytics.AnalyticsHelper
-import com.example.stocklistingapp.util.logScreenView
+import com.example.stocklistingapp.common.extensions.LocalAnalyticsHelper
+import com.example.stocklistingapp.common.extensions.logScreenView
+import com.example.stocklistingapp.domain.model.AnalyticsHelper
 import com.ramcosta.composedestinations.DestinationsNavHost
-import com.ramcosta.composedestinations.spec.NavGraphSpec
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -44,6 +38,8 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
     }
+
 }
 

@@ -1,15 +1,17 @@
-package com.example.stocklistingapp.util.firebase_analytics
+package com.example.stocklistingapp.common.firebase_analytics
 
 import android.util.Log
+import com.example.stocklistingapp.domain.model.AnalyticsEventModel
+import com.example.stocklistingapp.domain.model.AnalyticsHelper
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.logEvent
 import javax.inject.Inject
 
-class FirebaseAnalyticsHelper @Inject constructor(
+class FirebaseAnalyticsService @Inject constructor(
     private val firebaseAnalytics: FirebaseAnalytics,
 ) : AnalyticsHelper {
 
-    override fun logEvent(event: AnalyticsEvent) {
+    override fun logEvent(event: AnalyticsEventModel) {
         firebaseAnalytics.logEvent(event.type) {
             for (extra in event.extras) {
                 param(
