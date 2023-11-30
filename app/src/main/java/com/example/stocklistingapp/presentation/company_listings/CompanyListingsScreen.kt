@@ -53,6 +53,7 @@ fun CompanyListingsScreen(
                     CompanyItem(company = company, modifier = Modifier
                         .fillMaxWidth()
                         .clickable {
+                            viewModel.onSendNotification(company.name)
                             analyticsHelper.buttonClick(company.symbol)
                             navigator.navigate(CompanyInfoScreenDestination(company.symbol))
                         }

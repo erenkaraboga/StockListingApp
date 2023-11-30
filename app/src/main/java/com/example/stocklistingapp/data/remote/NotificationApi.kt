@@ -14,8 +14,7 @@ interface NotificationApi {
     ): Response<ResponseBody>
 
     companion object {
-        const val  SERVER_KEY = "JEJeRzjZ_8-orrcBl09-AFFjNXXcYOROZ2dnyyA2h2Q"
-
+        const val  SERVER_KEY = "AAAA6lV14cg:APA91bFGEJYcUMnQrvZ9nv2uCCPpzxYrw05UElVnzhCVKCQzyzD2frPUbrUtRWF_naQfJ2hKtlSphwOKhCiUjjzxt5igwJhNOnA4pFyesMbYqCQrJ4p9EseC0sQuRY0cn7_Do5TC21oO"
         const val BASE_URL = "https://fcm.googleapis.com"
         private const val CONTENT_TYPE = "application/json"
     }

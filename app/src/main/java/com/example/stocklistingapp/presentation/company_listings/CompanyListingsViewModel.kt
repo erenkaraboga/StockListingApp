@@ -5,17 +5,23 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.stocklistingapp.common.constants.Notification
 import com.example.stocklistingapp.domain.repository.StockRepository
 import com.example.stocklistingapp.common.resources.Resource
+import com.example.stocklistingapp.domain.model.NotificationDataModel
+import com.example.stocklistingapp.domain.model.NotificationModel
+import com.example.stocklistingapp.domain.repository.NotificationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import javax.inject.Inject
 
 @HiltViewModel
 class CompanyListingsViewModel @Inject constructor(
-    private val repository: StockRepository
+    private val repository: StockRepository,
+    private val notificationRepository: NotificationRepository
 ): ViewModel() {
 
     var state by mutableStateOf(CompanyListingsState())
@@ -25,6 +31,8 @@ class CompanyListingsViewModel @Inject constructor(
     init {
         getCompanyListings()
     }
+    var token by mutableStateOf("")
+        private set
 
     fun onEvent(event: CompanyListingsEvent) {
         when(event) {
@@ -64,6 +72,26 @@ class CompanyListingsViewModel @Inject constructor(
                         }
                     }
                 }
+        }
+    }
+    fun onSendNotification(companyName : String) {
+        viewModelScope.launch {
+            try {
+                val response = notificationRepository.postNotification(
+                    NotificationModel(
+                        data = NotificationDataModel(
+                            title = "CompanyClicked",
+                            message = companyName
+                        ),
+                        to = token.ifBlank { Notification.TOPIC }
+                    )
+                )
+                if(response.isSuccessful){
+                    println("success")
+                }
+            } catch (e: HttpException) {
+                println("raheem: ${e.message()}")
+            }
         }
     }
 

@@ -40,8 +40,8 @@ class FirebaseCloudMessagingService : FirebaseMessagingService() {
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
         val notification = NotificationCompat.Builder(this, Notification.NOTIFICATION_CHANNEL_ID)
-            .setContentTitle(message.notification?.title)
-            .setContentText(message.notification?.body)
+            .setContentTitle(message.data["title"])
+            .setContentText(message.data["message"])
             .setSmallIcon(R.drawable.app_logo)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
