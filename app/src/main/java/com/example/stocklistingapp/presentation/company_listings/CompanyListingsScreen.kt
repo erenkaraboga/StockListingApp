@@ -57,9 +57,8 @@ fun CompanyListingsScreen(
                     CompanyItem(company = company, modifier = Modifier
                         .fillMaxWidth()
                         .clickable {
-                            analyticsHelper.buttonClick("CompanyListingsScreen")
-                             analyticsHelper.selectCompany(company.name)
-                             navigator.navigate(CompanyInfoScreenDestination(company.symbol))
+                            analyticsHelper.buttonClick(company.symbol)
+                            navigator.navigate(CompanyInfoScreenDestination(company.symbol))
                         }
                         .padding(16.dp))
                     if (i < state.companies.size) {
